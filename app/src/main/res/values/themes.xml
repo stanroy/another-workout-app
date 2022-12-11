@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <style name="Theme.AnotherWorkoutAppSplash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/white</item>
+        <item name="postSplashScreenTheme">@style/Theme.AnotherWorkoutApp</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/kettlebell_splash</item>
+    </style>
+
+    <style name="Theme.AnotherWorkoutApp" parent="android:Theme.Material.Light.NoActionBar" />
+</resources>
