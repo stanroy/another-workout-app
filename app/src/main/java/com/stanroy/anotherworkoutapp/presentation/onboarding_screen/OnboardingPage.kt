@@ -33,10 +33,10 @@ sealed class OnboardingPage(val content: @Composable (pagerState: PagerState) ->
         OnboardingPage({ ThirdPageContent(it, dataStore, onSubmitButtonClicked) })
 
     companion object {
-        val pageCount = 3
+        const val pageCount = 3
 
         @Composable
-        fun loadOnboardingPages(
+        fun LoadOnboardingPages(
             currentPageNumber: Int,
             pagerState: PagerState,
             dataStore: DataStore<Preferences>,

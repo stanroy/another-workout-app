@@ -45,7 +45,7 @@ fun OnboardingScreen(navController: NavController, dataStore: DataStore<Preferen
                 count = OnboardingPage.pageCount,
                 state = pagerState
             ) { page ->
-                OnboardingPage.loadOnboardingPages(
+                OnboardingPage.LoadOnboardingPages(
                     currentPageNumber = page,
                     pagerState = pagerState,
                     dataStore = dataStore

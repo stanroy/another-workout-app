@@ -18,8 +18,9 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.stanroy.anotherworkoutapp.data.DataStoreKeys
 import com.stanroy.anotherworkoutapp.data.readDataStoreValue
 import com.stanroy.anotherworkoutapp.domain.model.Screen
-import com.stanroy.anotherworkoutapp.presentation.main_screen.MainScreen
+import com.stanroy.anotherworkoutapp.presentation.dashboard.MainScreen
 import com.stanroy.anotherworkoutapp.presentation.onboarding_screen.OnboardingScreen
+import com.stanroy.anotherworkoutapp.presentation.ui.theme.AnotherWorkoutAppColors
 import com.stanroy.anotherworkoutapp.presentation.ui.theme.AnotherWorkoutAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -39,8 +40,7 @@ class MainActivity : ComponentActivity() {
             var isOnboardingFinished by remember { mutableStateOf<Boolean?>(null) }
 
             AnotherWorkoutAppTheme {
-                val systemUiController = rememberSystemUiController()
-                systemUiController.setSystemBarsColor(color = MaterialTheme.colors.background)
+
                 val coroutineScope = rememberCoroutineScope()
 
                 LaunchedEffect(Unit) {
@@ -56,18 +56,21 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     val navController = rememberNavController()
-
+                    val systemUiController = rememberSystemUiController()
                     isOnboardingFinished?.let { onboardingFinished ->
                         NavHost(
                             navController = navController,
                             startDestination = if (onboardingFinished) Screen.MainScreen.route else Screen.OnboardingScreen.route
                         ) {
                             composable(Screen.OnboardingScreen.route) {
+                                systemUiController.setSystemBarsColor(color = AnotherWorkoutAppColors.onboardingAccent)
 
                                 OnboardingScreen(navController = navController, dataStore)
                             }
                             composable(Screen.MainScreen.route) {
-                                MainScreen(navController = navController)
+                                systemUiController.setSystemBarsColor(color = MaterialTheme.colors.background)
+
+                                MainScreen(navController = navController, dataStore = dataStore)
                             }
                         }
                     }

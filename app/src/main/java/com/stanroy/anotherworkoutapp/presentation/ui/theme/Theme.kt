@@ -77,11 +77,7 @@ fun AnotherWorkoutAppTheme(
     useDarkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable() () -> Unit
 ) {
-    val colors = if (!useDarkTheme) {
-        LightColors
-    } else {
-        DarkColors
-    }
+    val colors = LightColors
 
     MaterialTheme(
         colors = colors,
