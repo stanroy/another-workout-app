@@ -31,21 +31,25 @@ fun ThirdPageContent(
 ) {
     var submitButtonVisible by remember { mutableStateOf(false) }
     val coroutineScope = rememberCoroutineScope()
-    Scaffold(modifier = Modifier
-        .fillMaxSize(), bottomBar = {
-        PageBottomBar(pagerState, submitButtonVisible) {
+    var nameInput by remember { mutableStateOf("") }
 
-            saveDataStoreValue(
-                coroutineScope,
-                dataStore,
-                DataStoreKeys.finishedOnboarding,
-                true
-            )
+    Scaffold(
+        modifier = Modifier
+            .fillMaxSize(), bottomBar = {
+            PageBottomBar(pagerState, submitButtonVisible) {
 
-            onSubmitButtonClick()
+                saveDataStoreValue(
+                    coroutineScope,
+                    dataStore,
+                    DataStoreKeys.finishedOnboarding,
+                    true
+                )
+
+                saveDataStoreValue(coroutineScope, dataStore, DataStoreKeys.profileName, nameInput)
+
+                onSubmitButtonClick()
         }
     }) {
-        var nameInput by remember { mutableStateOf("") }
         submitButtonVisible = nameInput.isNotEmpty()
 
         Column(
